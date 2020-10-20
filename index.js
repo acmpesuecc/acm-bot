@@ -24,12 +24,26 @@ module.exports = app => {
   app.on("issue_comment.created", async (context) => {
       console.log("Issue Comment")
       var html_url = context.payload.issue.html_url
-      console.log(html_url)
       var sender = context.payload.sender.login
-      console.log(sender)
       var body = context.payload.comment.body
-      console.log(body, context)
-      console.log(context.payload.issue.user)
+      var contributor = context.payload.issue.user.login
+      var author_association= context.payload.comment.author_association
+      var bounty = 0
+      if(body[0] == '!'){
+        var res = body.split(" ")
+        if(res[0] == '!bounty'){
+          if(author_association=='MEMBER'){
+            bounty = res[1]
+            console.log(contributor, bounty)
+            //TODO Insert Database Call
+            const params = context.issue({ body: "Congrats @"+contributor+", you got "+bounty+" points!"});
+            return context.github.issues.createComment(params);
+          }
+        }
+      }
+      console.log(html_url)
+      console.log(sender)
+      //console.log(body, context)
 
     });
 
