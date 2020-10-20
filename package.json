@@ -18,6 +18,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "mongodb": "^3.6.2",
     "probot": "^10.9.3"
   },
   "devDependencies": {

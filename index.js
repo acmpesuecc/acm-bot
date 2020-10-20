@@ -1,6 +1,10 @@
 // Git Data API use case example
 // See: https://developer.github.com/v3/git/ to learn more
-
+const MongoClient = require('mongodb').MongoClient;
+const username = process.env.DB_USERNAME
+const password = process.env.DB_PASSWORD
+const uri = "mongodb+srv://"+username+":"+password+"@cluster0.uy3bn.mongodb.net/Hacktoberfest2020?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true});
 /**
  * This is the main entrypoint to your Probot app
  * @param {import('probot').Application} app
@@ -36,6 +40,17 @@ module.exports = app => {
             bounty = res[1]
             console.log(contributor, bounty)
             //TODO Insert Database Call
+            try{
+              await client.connect();
+              const collection = client.db("Hacktoberfest2020", {returnNonCachedInstance : true}).collection("BountyData");
+              // perform actions on the collection object
+              r = await collection.updateOne({html_url:html_url}, {$set: {contributor: contributor, maintainer:sender, points: bounty, timestamp:Date.now()}}, {upsert:true});
+            }
+            finally{
+              await client.close();
+
+            }
+
             const params = context.issue({ body: "Congrats @"+contributor+", you got "+bounty+" points!"});
             return context.github.issues.createComment(params);
           }
