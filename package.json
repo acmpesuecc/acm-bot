@@ -1,13 +1,13 @@
 {
-  "name": "bounty-bot",
+  "name": "acm-bot",
   "version": "1.0.0",
   "private": true,
-  "description": "A Bounty Bot by ACM PESU ECC!",
+  "description": "A Bot by ACM PESU ECC!",
   "author": "Srujan Deshpande <srujan.deshpande@gmail.com>",
   "license": "ISC",
-  "repository": "https://github.com/srujandeshpande/bounty-bot.git",
-  "homepage": "https://github.com/srujandeshpande/bounty-bot",
-  "bugs": "https://github.com/srujandeshpande/bounty-bot/issues",
+  "repository": "https://github.com/acmpesuecc/acm-bot.git",
+  "homepage": "https://github.com/acmpesuecc/acm-bot",
+  "bugs": "https://github.com/acmpesuecc/acm-bot/issues",
   "keywords": [
     "probot",
     "github",
