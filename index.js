@@ -27,6 +27,7 @@ module.exports = app => {
 
   app.on("issue_comment.created", async (context) => {
       console.log("Issue Comment")
+      console.log(context)
       var html_url = context.payload.issue.html_url
       var sender = context.payload.sender.login
       var body = context.payload.comment.body
@@ -36,7 +37,7 @@ module.exports = app => {
       if(body[0] == '!'){
         var res = body.split(" ")
         if(res[0] == '!bounty'){
-          if(author_association=='MEMBER'){
+          if(author_association=='MEMBER' || author_association=='OWNER'){
             bounty = res[1]
             console.log(contributor, bounty)
             //TODO Insert Database Call
