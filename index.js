@@ -27,13 +27,14 @@ module.exports = app => {
 
   app.on("issue_comment.created", async (context) => {
       console.log("Issue Comment")
-      console.log(context)
+      //console.log(context)
       var html_url = context.payload.issue.html_url
       var sender = context.payload.sender.login
       var body = context.payload.comment.body
       var contributor = context.payload.issue.user.login
       var author_association= context.payload.comment.author_association
       var bounty = 0
+      var timestamp = context.payload.comment.created_at
       if(body[0] == '!'){
         var res = body.split(" ")
         if(res[0] == '!bounty'){
@@ -45,7 +46,7 @@ module.exports = app => {
               await client.connect();
               const collection = client.db("Hacktoberfest2020", {returnNonCachedInstance : true}).collection("BountyData");
               // perform actions on the collection object
-              r = await collection.updateOne({html_url:html_url}, {$set: {contributor: contributor, maintainer:sender, points: bounty, timestamp:Date.now()}}, {upsert:true});
+              r = await collection.updateOne({html_url:html_url}, {$set: {contributor: contributor, maintainer:sender, points: bounty, timestamp:timestamp}}, {upsert:true});
             }
             finally{
               await client.close();
