@@ -38,7 +38,7 @@ module.exports = app => {
       if(body[0] == '!'){
         var res = body.split(" ")
         if(res[0] == '!bounty'){
-          if(["sakshi2912", "arjunvuppala123", "srujandeshpande", "Varun487", "manikyabard", "arpitnigam45", "TheVamster", "avinash-vk", "jeff10joy", "shreya1010svg", "chinmayishetty359", "Rishabkashyap14", "pk-95", "kalikidhar"].includes(sender)){
+          if(["JoeRishon", "sakshi2912", "arjunvuppala123", "srujandeshpande", "Varun487", "manikyabard", "arpitnigam45", "TheVamster", "avinash-vk", "jeff10joy", "shreya1010svg", "chinmayishetty359", "Rishabkashyap14", "pk-95", "kalikidhar"].includes(sender)){
           //if(author_association=='MEMBER' || author_association=='OWNER'){
             bounty = res[1]
             console.log(contributor, bounty)
