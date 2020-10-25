@@ -23,8 +23,10 @@ docker run -e APP_ID=<app-id> -e PRIVATE_KEY=<pem-value> bounty-bot
 ```
 
 ## How to add Bounty
+```
 1. go to the comment section for the particular pull request
-2. mention !bount <bounty value> in the comment and the bounty will be added to the particular PR.
+2. mention !bounty <bounty value> in the comment and the bounty will be added to the particular PR.
+```
   
 ## Contributing
 
